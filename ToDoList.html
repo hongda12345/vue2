@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="vue.js"></script>
+</head>
+<style>
+	*{
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+</style>
+<body>
+	<div id="app">
+		<ul>
+			<li v-for"v in filter['doing']">
+				<input type="checkbox" v-model="v['status']">
+				<input type="text" v-model="v">
+				<button @click="del(v['id'])">删除</button>
+			</li>
+		</ul>
+		<ul>
+			<li v-for"v in filter['done']">
+				<input type="checkbox" v-model="v['status']">
+				<input type="text" v-model="v">
+				<button @click="del(v['id'])">删除</button>
+			</li>
+		</ul>
+	</div>
+	<script>
+		/*arr=[
+            {id:1,content:'hongsa',status:true},
+            {id:2,content:'hongsa',status:true},
+            {id:3,content:'hongsa',status:true},
+            {id:4,content:'hongsa',status:true},
+            {id:5,content:'hongsa',status:true},
+		];*/
+		localStorage.todos=JSON.stringify(arr);
+		let app=new Vue({
+            el:"#app",
+            data:{
+            	todos:[
+                    {id:1,content:'hongsa',status:true},
+                    {id:2,content:'hongsa',status:true},
+                    {id:3,content:'hongsa',status:true},
+                    {id:4,content:'hongsa',status:true},
+                    {id:5,content:'hongsa',status:true}
+            	]
+            },
+            computed:{
+                filter(){
+                	let data={doing:[],done:[]};
+                	return data;
+                },
+            },
+            mounted(){
+            	this.todos=JSON.parse(localStorage.todos);
+            }
+		})
+	</script>
+</body>
+</html>
